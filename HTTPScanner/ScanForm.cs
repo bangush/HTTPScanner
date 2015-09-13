@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -17,11 +16,21 @@ namespace HTTPScanner
         private int maxNumOfAsyncScanners = 200;
         private CancellationTokenSource cancellationTokenSource;
         private static int id = 0;
+        private List<HttpStatusCode> allHttpStatuscodes;
 
         public ScanForm()
         {
             InitializeComponent();
             scanner = new Scanner();
+
+            allHttpStatuscodes = new List<HttpStatusCode>();
+            AddAllHttpStatuscodes();
+        }
+
+        private void AddAllHttpStatuscodes()
+        {
+            foreach (HttpStatusCode statusCode in Enum.GetValues(typeof(HttpStatusCode)))
+                allHttpStatuscodes.Add(statusCode);
         }
 
         private async void startScanButton_Click(object sender, EventArgs e)
@@ -61,11 +70,8 @@ namespace HTTPScanner
             var statusCodes = new List<HttpStatusCode>();
 
             if (anyHttpStatusCheckbox.Checked)
-            {
-                foreach (HttpStatusCode code in Enum.GetValues(typeof(HttpStatusCode)))
-                    statusCodes.Add(code);
-                return statusCodes;
-            }
+                return allHttpStatuscodes;
+
             if (okHttpStatusCheckbox.Checked)
                 statusCodes.Add(HttpStatusCode.OK);
             if (badRequestHttpStatusCheckbox.Checked) 
