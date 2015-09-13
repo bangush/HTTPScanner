@@ -34,9 +34,13 @@ namespace HTTPScanner
 
                 IEnumerable<Task<HttpResponseMessage>> enumerableTasks = from value in Enumerable.Range(0, maxNumOfAsyncScanners)
                                                                             select scanner.ScanIPAddressAsync(Scanner.GenerateIPAddress(), cancellationTokenSource.Token);
+                Console.WriteLine($"Starting {maxNumOfAsyncScanners} Tasks.");
                 var tasks = enumerableTasks.ToArray();
                 var res = await Task.WhenAll(tasks);
-                Console.WriteLine("All done");
+                if (cancellationTokenSource.IsCancellationRequested)
+                    Console.WriteLine("Tasks got cancelled.");
+                else
+                    Console.WriteLine("Tasks completed.");
                 var httpResponseMessages = new List<HttpResponseMessage>();
                 foreach (var v in tasks)
                 {
@@ -91,8 +95,8 @@ namespace HTTPScanner
         {
             if (cancellationTokenSource != null)
             {
-                cancellationTokenSource.Cancel();
                 scanning = false;
+                cancellationTokenSource.Cancel();
             }
         }
 

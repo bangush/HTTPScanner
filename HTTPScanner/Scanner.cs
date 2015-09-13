@@ -21,7 +21,6 @@ namespace HTTPScanner
             return IPAddress.Parse(addr);
         }
 
-        static int id = 0;
         public async Task<HttpResponseMessage> ScanIPAddressAsync(IPAddress addr, CancellationToken ct)
         {
             try
@@ -30,7 +29,6 @@ namespace HTTPScanner
                 client.Timeout = TimeSpan.FromMilliseconds(1000);
                 var ipaddr = addr.ToString();
                 var resp = client.GetAsync("http://" + ipaddr, ct);
-                Console.WriteLine("Starting: " + id++);
                 return await resp;
             }
             catch (OperationCanceledException)
