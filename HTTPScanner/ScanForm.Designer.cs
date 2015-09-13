@@ -37,13 +37,16 @@
             this.badRequestHttpStatusCheckbox = new System.Windows.Forms.CheckBox();
             this.unauthorizedHttpStatusCheckbox = new System.Windows.Forms.CheckBox();
             this.anyHttpStatusCheckbox = new System.Windows.Forms.CheckBox();
+            this.numOfScannersLabel = new System.Windows.Forms.Label();
+            this.amountOfScannersNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.amountOfScannersNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // startScanButton
             // 
             this.startScanButton.Location = new System.Drawing.Point(254, 226);
             this.startScanButton.Name = "startScanButton";
-            this.startScanButton.Size = new System.Drawing.Size(75, 23);
+            this.startScanButton.Size = new System.Drawing.Size(86, 23);
             this.startScanButton.TabIndex = 0;
             this.startScanButton.Text = "Start";
             this.startScanButton.UseVisualStyleBackColor = true;
@@ -77,7 +80,7 @@
             // 
             this.stopScanButton.Location = new System.Drawing.Point(254, 197);
             this.stopScanButton.Name = "stopScanButton";
-            this.stopScanButton.Size = new System.Drawing.Size(75, 23);
+            this.stopScanButton.Size = new System.Drawing.Size(86, 23);
             this.stopScanButton.TabIndex = 2;
             this.stopScanButton.Text = "Stop";
             this.stopScanButton.UseVisualStyleBackColor = true;
@@ -125,11 +128,44 @@
             this.anyHttpStatusCheckbox.Text = "Any";
             this.anyHttpStatusCheckbox.UseVisualStyleBackColor = true;
             // 
+            // numOfScannersLabel
+            // 
+            this.numOfScannersLabel.AutoSize = true;
+            this.numOfScannersLabel.Location = new System.Drawing.Point(251, 155);
+            this.numOfScannersLabel.Name = "numOfScannersLabel";
+            this.numOfScannersLabel.Size = new System.Drawing.Size(85, 13);
+            this.numOfScannersLabel.TabIndex = 8;
+            this.numOfScannersLabel.Text = "Scanner amount";
+            // 
+            // amountOfScannersNumericUpDown
+            // 
+            this.amountOfScannersNumericUpDown.Location = new System.Drawing.Point(255, 172);
+            this.amountOfScannersNumericUpDown.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.amountOfScannersNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.amountOfScannersNumericUpDown.Name = "amountOfScannersNumericUpDown";
+            this.amountOfScannersNumericUpDown.Size = new System.Drawing.Size(85, 20);
+            this.amountOfScannersNumericUpDown.TabIndex = 9;
+            this.amountOfScannersNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // ScanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(349, 261);
+            this.Controls.Add(this.amountOfScannersNumericUpDown);
+            this.Controls.Add(this.numOfScannersLabel);
             this.Controls.Add(this.anyHttpStatusCheckbox);
             this.Controls.Add(this.unauthorizedHttpStatusCheckbox);
             this.Controls.Add(this.badRequestHttpStatusCheckbox);
@@ -140,6 +176,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ScanForm";
             this.Text = "HTTP Scanner";
+            ((System.ComponentModel.ISupportInitialize)(this.amountOfScannersNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +193,8 @@
         private System.Windows.Forms.CheckBox badRequestHttpStatusCheckbox;
         private System.Windows.Forms.CheckBox unauthorizedHttpStatusCheckbox;
         private System.Windows.Forms.CheckBox anyHttpStatusCheckbox;
+        private System.Windows.Forms.Label numOfScannersLabel;
+        private System.Windows.Forms.NumericUpDown amountOfScannersNumericUpDown;
     }
 }
 

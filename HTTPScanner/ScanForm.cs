@@ -13,7 +13,7 @@ namespace HTTPScanner
     {
         private bool scanning = false;
         private Scanner scanner;
-        private int maxNumOfAsyncScanners = 200;
+        private int maxNumOfAsyncScanners = 1;
         private CancellationTokenSource cancellationTokenSource;
         private static int id = 0;
         private List<HttpStatusCode> allHttpStatuscodes;
@@ -37,6 +37,7 @@ namespace HTTPScanner
         {
             startScanButton.Enabled = false;
             scanning = true;
+            maxNumOfAsyncScanners = Decimal.ToInt32(amountOfScannersNumericUpDown.Value);
             while (scanning)
             {
                 cancellationTokenSource = new CancellationTokenSource();
@@ -120,5 +121,7 @@ namespace HTTPScanner
             var clickedItem = resultList.SelectedItems[0].SubItems[0].Text;
             System.Diagnostics.Process.Start("http://" + clickedItem);
         }
+
+
     }
 }
