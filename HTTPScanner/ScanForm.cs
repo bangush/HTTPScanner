@@ -16,6 +16,7 @@ namespace HTTPScanner
         private Scanner scanner;
         private int maxNumOfAsyncScanners = 200;
         private CancellationTokenSource cancellationTokenSource;
+        private static int id = 0;
 
         public ScanForm()
         {
@@ -34,13 +35,14 @@ namespace HTTPScanner
 
                 IEnumerable<Task<HttpResponseMessage>> enumerableTasks = from value in Enumerable.Range(0, maxNumOfAsyncScanners)
                                                                             select scanner.ScanIPAddressAsync(Scanner.GenerateIPAddress(), cancellationTokenSource.Token);
-                Console.WriteLine($"Starting {maxNumOfAsyncScanners} Tasks.");
+                Console.Write($"{id++}: Starting {maxNumOfAsyncScanners} Tasks:");
                 var tasks = enumerableTasks.ToArray();
                 var res = await Task.WhenAll(tasks);
                 if (cancellationTokenSource.IsCancellationRequested)
-                    Console.WriteLine("Tasks got cancelled.");
+                    Console.Write(" Tasks cancelled.");
                 else
-                    Console.WriteLine("Tasks completed.");
+                    Console.Write(" Tasks completed.");
+                Console.WriteLine();
                 var httpResponseMessages = new List<HttpResponseMessage>();
                 foreach (var v in tasks)
                 {
