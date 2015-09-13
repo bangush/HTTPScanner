@@ -66,12 +66,12 @@
             // ipAddressHeader
             // 
             this.ipAddressHeader.Text = "IP Address";
-            this.ipAddressHeader.Width = 104;
+            this.ipAddressHeader.Width = 106;
             // 
             // responseCodeHeader
             // 
             this.responseCodeHeader.Text = "HTTP Response";
-            this.responseCodeHeader.Width = 95;
+            this.responseCodeHeader.Width = 125;
             // 
             // stopScanButton
             // 
@@ -127,8 +127,8 @@
             // 
             // ScanForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(349, 261);
             this.Controls.Add(this.anyHttpStatusCheckbox);
             this.Controls.Add(this.unauthorizedHttpStatusCheckbox);
@@ -137,6 +137,7 @@
             this.Controls.Add(this.stopScanButton);
             this.Controls.Add(this.resultList);
             this.Controls.Add(this.startScanButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ScanForm";
             this.Text = "HTTP Scanner";
             this.ResumeLayout(false);

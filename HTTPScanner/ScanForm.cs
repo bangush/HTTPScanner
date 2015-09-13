@@ -44,14 +44,19 @@ namespace HTTPScanner
 
                 IEnumerable<Task<HttpResponseMessage>> enumerableTasks = from value in Enumerable.Range(0, maxNumOfAsyncScanners)
                                                                             select scanner.ScanIPAddressAsync(Scanner.GenerateIPAddress(), cancellationTokenSource.Token);
+
                 Console.Write($"{id++}: Starting {maxNumOfAsyncScanners} Tasks:");
+
                 var tasks = enumerableTasks.ToArray();
                 var res = await Task.WhenAll(tasks);
+
                 if (cancellationTokenSource.IsCancellationRequested)
                     Console.Write(" Tasks cancelled.");
                 else
                     Console.Write(" Tasks completed.");
+
                 Console.WriteLine();
+
                 var httpResponseMessages = new List<HttpResponseMessage>();
                 foreach (var v in tasks)
                 {
@@ -59,6 +64,7 @@ namespace HTTPScanner
                         continue;
                     httpResponseMessages.Add(v.Result);
                 }
+
                 FilterAndAddResponseMessages(httpResponseMessages);
                 cancellationTokenSource = null;
             }

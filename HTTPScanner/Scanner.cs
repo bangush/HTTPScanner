@@ -30,17 +30,9 @@ namespace HTTPScanner
                 var resp = client.GetAsync("http://" + ipaddr, ct);
                 return await resp;
             }
-            catch (OperationCanceledException)
+            catch (Exception e)
             {
-                /*
-                I think this is always called because of setting a timeout
-                for the HttpClient. Aka, when the timespan is exceeded 
-                the task is 'cancelled'. 
-                */
-                return null;
-            }
-            catch (Exception)
-            {
+                //Probably timeout or cancellation.
                 return null;
             }
         }
